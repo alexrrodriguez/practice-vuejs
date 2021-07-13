@@ -60,3 +60,19 @@ var info = new Vue({
     };
   },
 });
+
+var list = new Vue({
+  el: "#list",
+  data: function () {
+    return {
+      fruits: ["apple", "orange", "mango"],
+      newFruit: "",
+    };
+  },
+  methods: {
+    addNewFruit: function () {
+      this.fruits.push(this.newFruit);
+      this.newFruit = "";
+    },
+  },
+});

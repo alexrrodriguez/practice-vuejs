@@ -58,5 +58,15 @@
       <input type="checkbox" v-on:click="showInfo = !showInfo">
       <p v-bind:class="{disabled: showInfo}">Info!!</p>
     </div>
+    <div id="list" >
+      <div v-for="fruit in fruits">
+        <p>{{fruit}}</p>
+      </div>
+        <div>
+          <input type="text" v-model="newFruit">
+          <button v-on:click="addNewFruit()">Add a Fruit!</button>
+        </div>
+      
+    </div>
   </body>
 </html>

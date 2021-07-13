@@ -51,3 +51,12 @@ var app7 = new Vue({
     ],
   },
 });
+
+var info = new Vue({
+  el: "#info",
+  data: function () {
+    return {
+      showInfo: false,
+    };
+  },
+});

@@ -47,5 +47,10 @@
         ></todo-item>
       </ol>
     </div>
+    <div id="info">
+      <button v-on:click="showInfo = !showInfo">Toggle!</button>
+      <input type="checkbox" v-on:click="showInfo = !showInfo">
+      <p v-if="showInfo">Info!!</p>
+    </div>
   </body>
 </html>

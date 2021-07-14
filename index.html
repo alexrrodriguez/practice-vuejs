@@ -1,72 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Practice Vue.js</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="index.js" defer></script>
-  </head>
-<style>
-  .disabled {
-    color: greenyellow;
-    transition: color 1s ease;
-  }
-</style>
-  <body>
-    <h1>Hello from HTML!</h1>
-    <div id="app">
-      {{ message }}
-    </div>
-    <div id="app-4">
-      <ol>
-        <li v-for="todo in todos">
-          {{ todo.text }}
-        </li>
-      </ol>
-    </div>
-    <div id="app-5">
-      <p>{{ message }}</p>
-      <button v-on:click="reverseMessage">Reverse Message</button>
-    </div>
-    <div id="app-6">
-      <p>{{ message }}</p>
-      <input v-model="message">
-    </div>
-    <div id="app-2">
-      <span v-bind:title="message">
-        Hover your mouse over me for a few seconds
-        to see my dynamically bound title!
-      </span>
-    </div>
-    <div id="app-7">
-      <ol>
-        <!--
-          Now we provide each todo-item with the todo object
-          it's representing, so that its content can be dynamic.
-          We also need to provide each component with a "key",
-          which will be explained later.
-        -->
-        <todo-item
-          v-for="item in groceryList"
-          v-bind:todo="item"
-          v-bind:key="item.id"
-        ></todo-item>
-      </ol>
-    </div>
-    <div id="info">
-      <button v-on:click="showInfo = !showInfo">Toggle!</button>
-      <input type="checkbox" v-on:click="showInfo = !showInfo">
-      <p v-bind:class="{disabled: showInfo}">Info!!</p>
-    </div>
-    <div id="list" >
-      <div v-for="fruit in fruits">
-        <p>{{fruit}}</p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Practice Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="index.js" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <style>
+    .disabled {
+      color: lightgray;
+      transition: color 1s ease;
+    }
+  </style>
+  <body>
+    <h1>Hello from HTML!</h1>
+    <div id="app">
+      <button v-on:click="loadTodos()">Load Todos</button>
+      <div v-for="todo in todos">
+        <h4>
+          Title: {{ todo.title }}
+        </h4>
+        <p>Completed? {{todo.completed}}</p>
       </div>
-        <div>
-          <input type="text" v-model="newFruit">
-          <button v-on:click="addNewFruit()">Add a Fruit!</button>
-        </div>
-      
+      <h1>{{message}}</h1>
+      <h2>{{name}}</h2>
+      <button v-on:click="changeMessage()">Click it!</button>
+      <input type="text" v-model="name" />
+      <br />
+      <br />
+      <br />
+      <div>
+        <button v-on:click="showInfo = !showInfo">Toggle!</button>
+        <p v-bind:class="{disabled: showInfo}">Extra Information!</p>
+      </div>
+
+      <div v-for="fruit in fruits">
+        <p>{{ fruit }}</p>
+      </div>
+      <input type="text" v-model="newFruit" />
+      <button v-on:click="addNewFruit()">Add that fruit!</button>
     </div>
-  </body>
+  </body>
 </html>

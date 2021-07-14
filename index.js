@@ -1,78 +1,30 @@
-/* global Vue */
+/* global Vue, axios */
+
 var app = new Vue({
   el: "#app",
   data: function () {
     return {
       message: "Hello from JavaScript!",
-    };
-  },
-});
-var app4 = new Vue({
-  el: "#app-4",
-  data: {
-    todos: [{ text: "Learn JavaScript" }, { text: "Learn Vue" }, { text: "Build something awesome" }],
-  },
-});
-var app5 = new Vue({
-  el: "#app-5",
-  data: {
-    message: "Hello Vue.js!",
-  },
-  methods: {
-    reverseMessage: function () {
-      this.message = this.message.split("").reverse().join("");
-    },
-  },
-});
-var app6 = new Vue({
-  el: "#app-6",
-  data: {
-    message: "Hello Vue!",
-  },
-});
-var app2 = new Vue({
-  el: "#app-2",
-  data: {
-    message: "You loaded this page on " + new Date().toLocaleString(),
-  },
-});
-Vue.component("todo-item", {
-  props: ["todo"],
-  template: "<li>{{ todo.text }}</li>",
-});
-
-var app7 = new Vue({
-  el: "#app-7",
-  data: {
-    groceryList: [
-      { id: 0, text: "Vegetables" },
-      { id: 1, text: "Cheese" },
-      { id: 2, text: "Whatever else humans are supposed to eat" },
-    ],
-  },
-});
-
-var info = new Vue({
-  el: "#info",
-  data: function () {
-    return {
+      name: "Alex",
       showInfo: false,
-    };
-  },
-});
-
-var list = new Vue({
-  el: "#list",
-  data: function () {
-    return {
-      fruits: ["apple", "orange", "mango"],
+      fruits: ["apple", "banana", "orange"],
       newFruit: "",
+      todos: [],
     };
   },
   methods: {
+    changeMessage: function () {
+      this.message = "Whoa...";
+    },
     addNewFruit: function () {
       this.fruits.push(this.newFruit);
       this.newFruit = "";
+    },
+    loadTodos: function () {
+      axios.get("https://jsonplaceholder.typicode.com/todos").then((response) => {
+        console.log(response.data);
+        this.todos = response.data;
+      });
     },
   },
 });
